@@ -1,0 +1,18 @@
+table {
+    margin-top: 3%;
+}
+
+button {
+    margin-top: 2%;
+    margin-bottom: 15%;
+}
+
+.del {
+    color: blueviolet;
+}
+
+.del:hover {
+    text-decoration: underline;
+    color: blue;
+    cursor: pointer;
+}

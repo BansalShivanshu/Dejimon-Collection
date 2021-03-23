@@ -1,0 +1,9 @@
+{
+    "compilerOptions": {
+        "target": "ES6",
+        "strict": true,
+        "module": "system",
+        "outDir": "jsFiles"
+    }
+    // "files": ["hello.ts"]
+}
