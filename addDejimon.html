@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add a New Dejimon</title>
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <!-- Local Stylesheet -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="text-center">
+    <header>
+        <section class="jumbotron">
+            <h1 class="h1">Add a new Dejimon</h1><br>
+            <p class="text-muted">Enter details below</p>
+        </section>
+    </header>
+
+    <form>
+
+        <section class="form-group">
+            <label for="name">Name</label>
+            <input type="text" placeholder="Enter Name" id="name" class="form-control">
+        </section>
+        
+        <section class="form-group">
+            <label for="select-type">Select a Type</label>
+            <select id="select-type" class="form-control">
+                <option value="0" selected disabled hidden>Select Dejimon Type</option>
+                <option value="1">Yorkshire</option>
+                <option value="2">Lean</option>
+                <option value="3">Potbelly</option>
+            </select>
+        </section>
+
+        <section class="form-group">
+            <label for="ability-type">Ability</label>
+            <select id="ability-type" class="form-control">
+                <option value="0" selected disabled hidden>Select Dejimon Ability</option>
+                <option value="1">Water</option>
+                <option value="2">Ice</option>
+                <option value="3">Fire</option>
+                <option value="4">Charm</option>
+                <option value="5">Electric</option>
+            </select>
+        </section>
+
+        <section class="form-group">
+            <label for="ability">Ability Power [0 to 100]</label>
+            <input type="range" id="ability" class="form-control-range" min="0" max="100" step="1" value="50"
+            oninput="this.nextElementSibling.value = this.value">
+            <output>50</output>
+        </section>
+
+        <section class="form-group">
+            <label for="height">Height</label>
+            <input type="number" class="form-control" id="height" placeholder="Enter Dejimon Height">
+        </section>
+
+        <section class="form-group">
+            <label for="weight">Weight</label>
+            <input type="number" class="form-control" id="weight" placeholder="Enter Dejimon Weight">
+        </section>
+
+        <section class="form-group">
+            <label for="overall-strength">Overall Strength</label>
+            <input type="number" class="form-control" id="overall-strength" placeholder="Overall Strength" disabled>
+        </section>
+
+        <button type="submit" id="submit-details" class="btn btn-primary btn-lg">Submit Details</button>
+    </form>
+</body>
+</html>

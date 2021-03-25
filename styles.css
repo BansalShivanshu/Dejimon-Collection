@@ -16,3 +16,24 @@ button {
     color: blue;
     cursor: pointer;
 }
+
+.form-control {
+    width: 25%;
+    margin: auto;
+    display: block;
+    margin-bottom: 1.7%;
+}
+
+#ability {
+    width: 25%;
+    margin: auto;
+    display: block;
+}
+
+#submit-details {
+    margin-top: 3%;
+    padding-left: 70px;
+    padding-right: 70px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}

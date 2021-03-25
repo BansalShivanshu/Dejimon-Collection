@@ -1,4 +1,5 @@
-export interface Person {
+export interface Dejimon {
+    id?: number;
     name: string;
     type: string;
     height: number;
