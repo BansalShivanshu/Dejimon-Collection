@@ -2,7 +2,7 @@ import { Dejimon } from "./Dejimon";
 import { DejimonServices } from "./DejimonServices"
 
 export class MainFunctions {
-    AddDejimon(): void {
+    addDejimon(): void {
         // make the form visible
         var formDOM = <HTMLElement> document.getElementById("dejiAdd");
         formDOM.hidden = false;
@@ -104,6 +104,40 @@ export class MainFunctions {
             alert("Dejimon Added!");
 
             formDOM.hidden = true;
+
+            updateView(deji.name, deji.type);
         })
-    }     
+    }        
+}
+
+function updateView(name: string, type: string) {
+    var table = <HTMLTableElement> document.getElementById("collection-table");
+
+    var row = table.insertRow();
+    var cell1 = row.insertCell(0);
+    var cell2 = row.insertCell(1);
+    var cell3 = row.insertCell(2);
+    var cell4 = row.insertCell(3);
+
+    cell1.innerHTML = name;
+    cell2.innerHTML = type;
+    cell3.innerHTML = "<a href='#' id='more-info'>More info</a>";
+    cell4.innerHTML = "<a class='del'>Delete</a>";
+
+    // event listner for deletion
+    cell4.addEventListener('click', () => {
+        removeRow(row);
+    })
+}
+
+function removeRow(row: HTMLTableRowElement) : void {
+    var res = confirm("Are you sure about deleting Dejimon " + row.cells[0].innerText + "?");
+    if (res) {
+        // remove from array
+
+        // remove from document
+        var table = <HTMLTableElement> document.getElementById("collection-table");
+        console.log("Deleting row " + row.rowIndex)
+        table.deleteRow(row.rowIndex);
+    }
 }

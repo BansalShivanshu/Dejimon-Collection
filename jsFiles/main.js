@@ -16,7 +16,7 @@ System.register(["./MainFunctions"], function (exports_1, context_1) {
             /**
              * Event Listners
              */
-            (_a = document.getElementById("add")) === null || _a === void 0 ? void 0 : _a.addEventListener('click', mainFunctions.AddDejimon);
+            (_a = document.getElementById("add")) === null || _a === void 0 ? void 0 : _a.addEventListener('click', mainFunctions.addDejimon);
         }
     };
 });

@@ -2,6 +2,32 @@ System.register(["./DejimonServices"], function (exports_1, context_1) {
     "use strict";
     var DejimonServices_1, MainFunctions;
     var __moduleName = context_1 && context_1.id;
+    function updateView(name, type) {
+        var table = document.getElementById("collection-table");
+        var row = table.insertRow();
+        var cell1 = row.insertCell(0);
+        var cell2 = row.insertCell(1);
+        var cell3 = row.insertCell(2);
+        var cell4 = row.insertCell(3);
+        cell1.innerHTML = name;
+        cell2.innerHTML = type;
+        cell3.innerHTML = "<a href='#' id='more-info'>More info</a>";
+        cell4.innerHTML = "<a class='del'>Delete</a>";
+        // event listner for deletion
+        cell4.addEventListener('click', () => {
+            removeRow(row);
+        });
+    }
+    function removeRow(row) {
+        var res = confirm("Are you sure about deleting Dejimon " + row.cells[0].innerText + "?");
+        if (res) {
+            // remove from array
+            // remove from document
+            var table = document.getElementById("collection-table");
+            console.log("Deleting row " + row.rowIndex);
+            table.deleteRow(row.rowIndex);
+        }
+    }
     return {
         setters: [
             function (DejimonServices_1_1) {
@@ -10,7 +36,7 @@ System.register(["./DejimonServices"], function (exports_1, context_1) {
         ],
         execute: function () {
             MainFunctions = class MainFunctions {
-                AddDejimon() {
+                addDejimon() {
                     // make the form visible
                     var formDOM = document.getElementById("dejiAdd");
                     formDOM.hidden = false;
@@ -100,6 +126,7 @@ System.register(["./DejimonServices"], function (exports_1, context_1) {
                         collection.add(deji);
                         alert("Dejimon Added!");
                         formDOM.hidden = true;
+                        updateView(deji.name, deji.type);
                     });
                 }
             };

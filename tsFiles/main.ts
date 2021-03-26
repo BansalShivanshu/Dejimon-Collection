@@ -12,7 +12,7 @@ var mainFunctions = new MainFunctions();
 /**
  * Event Listners
  */
-document.getElementById("add")?.addEventListener('click', mainFunctions.AddDejimon);
+document.getElementById("add")?.addEventListener('click', mainFunctions.addDejimon);
 
 // var dej = {
 //     name: "Shivanshu",
