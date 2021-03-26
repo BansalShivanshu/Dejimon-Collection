@@ -12,7 +12,11 @@ var mainFunctions = new MainFunctions();
 /**
  * Event Listners
  */
-document.getElementById("add")?.addEventListener('click', mainFunctions.addDejimon);
+(<HTMLButtonElement>document.getElementById("add")).addEventListener('click', mainFunctions.addDejimon);
+(<HTMLButtonElement>document.getElementById("cancel-btn")).addEventListener('click', mainFunctions.cancelForm);
+(<HTMLSelectElement>document.getElementById("select-type")).addEventListener('change', mainFunctions.selectTypeLsn);
+(<HTMLButtonElement> document.getElementById("submit-details")).addEventListener('click', mainFunctions.submitLsn);
+
 
 // var dej = {
 //     name: "Shivanshu",

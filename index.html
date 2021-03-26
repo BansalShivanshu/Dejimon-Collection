@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <header>
+    <header id="main-heading">
         <section class="jumbotron">
             <h1 class="h1">Dejimon Collection</h1><br>
             <p class="text-muted">You are a Dejimon collector and would like to keep track of all your collected Dejimons.<br>
@@ -35,12 +35,6 @@
                 </tr>
             </thead>
             <tbody>
-                <!-- <tr class="">
-                    <td>Porkichu</td>
-                    <td>Potbelly</td>
-                    <td>More Info</td>
-                    <td>Delete</td>
-                </tr> -->
                 <tr>
                     <td>Porkichu</td>
                     <td>Potbelly</td>
@@ -53,9 +47,9 @@
         <button type="button" id="add" class="btn btn-primary btn-lg">Add A Dejimon</button>
     </main>
 
-
+    <!-- Add a new Dejimon -->
     <section class="text-center" id="dejiAdd" hidden>
-        <form>
+        <form id="dejiAddForm">
             <section class="form-group">
                 <label for="name">Name</label>
                 <input type="text" placeholder="Enter Name" id="name" class="form-control">
@@ -92,16 +86,50 @@
     
             <section class="form-group">
                 <label for="height">Height</label>
-                <input type="number" class="form-control" id="height" placeholder="Enter Dejimon Height">
+                <input type="number" class="form-control" id="height" placeholder="Enter Dejimon Height" min="0">
             </section>
     
             <section class="form-group">
                 <label for="weight">Weight</label>
-                <input type="number" class="form-control" id="weight" placeholder="Enter Dejimon Weight">
+                <input type="number" class="form-control" id="weight" placeholder="Enter Dejimon Weight" min="0">
             </section>
     
             <button type="button" id="submit-details" class="btn btn-primary btn-lg">Submit Details</button>
+            <button type="reset" id="cancel-btn" class="btn btn-secondary btn-lg">Cancel</button>
         </form>
+    </section>
+
+    <!-- Display more information -->
+    <section id="more-info" class="text-center">
+        <h3 class="h3">More Info</h3>
+        <table class="table table-striped table-hover table-dark" id="collection-table">
+            <tr>
+                <td>Name:</td>
+                <td id="mf-name"></td>
+            </tr>
+            <tr>
+                <td>Type:</td>
+                <td id="mf-type"></td>
+            </tr>
+            <tr>
+                <td id="mf-ability-type"></td>
+                <td id="mf-ability-strength"></td>
+            </tr>
+            <tr>
+                <td>Height:</td>
+                <td id="mf-height"></td>
+            </tr>
+            <tr>
+                <td>Weight:</td>
+                <td id="mf-weight"></td>
+            </tr>
+            <tr>
+                <td>Overall Strength:</td>
+                <td id="mf-overall-strength"></td>
+            </tr>
+        </table>
+
+        <button type="button" id="mf-done" class="btn btn-primary btn-lg">Done</button>
     </section>
 
 

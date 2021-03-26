@@ -8,7 +8,7 @@ var localStrg = new StorageServices();
 namespace Dejimon.Service {
     export interface Services {
         add(dejimon: Dejimon): void;
-        moreInfo(dejimon: Dejimon): Dejimon;
+        moreInfo(dejiID: number): Dejimon;
         remove(dejimon: Dejimon): boolean;
         showAll(): Dejimon[];
     }
@@ -37,9 +37,28 @@ export class DejimonServices implements Dejimon.Service.Services {
         console.log("added new dejimon: " , dejimon);
     }
 
-    moreInfo(dejimon: Dejimon): Model.Dejimon {
-        throw new Error('Method not implemented.');
+    moreInfo(dejiID: number): Dejimon {
+        var dej: Dejimon = {
+            id: -1,
+            name: "",
+            type: "",
+            height: -1,
+            weight: -1,
+            ability: -1,
+            ability_type: "",
+            overall_strength: -1
+        };
+
+        for (let i: number = 0; i < this.dejimons.length; i++) {
+            if (this.dejimons[i].id === dejiID) {
+                dej = this.dejimons[i];
+                break;
+            }
+        }
+        
+        return dej;
     }
+
     remove(dejimon: Dejimon): boolean {
         throw new Error('Method not implemented.');
     }

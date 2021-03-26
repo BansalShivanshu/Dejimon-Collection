@@ -30,7 +30,7 @@ button {
     display: block;
 }
 
-#submit-details {
+#submit-details, #cancel-btn, #mf-done {
     margin-top: 3%;
     padding-left: 70px;
     padding-right: 70px;
@@ -44,4 +44,8 @@ button {
 
 table td {
     text-transform: capitalize;
+}
+
+#more-info {
+    text-decoration: underline ;
 }

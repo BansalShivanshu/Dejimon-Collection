@@ -26,8 +26,24 @@ System.register(["./StorageServices"], function (exports_1, context_1) {
                     localStrg.updateStorage(this.dejimons);
                     console.log("added new dejimon: ", dejimon);
                 }
-                moreInfo(dejimon) {
-                    throw new Error('Method not implemented.');
+                moreInfo(dejiID) {
+                    var dej = {
+                        id: -1,
+                        name: "",
+                        type: "",
+                        height: -1,
+                        weight: -1,
+                        ability: -1,
+                        ability_type: "",
+                        overall_strength: -1
+                    };
+                    for (let i = 0; i < this.dejimons.length; i++) {
+                        if (this.dejimons[i].id === dejiID) {
+                            dej = this.dejimons[i];
+                            break;
+                        }
+                    }
+                    return dej;
                 }
                 remove(dejimon) {
                     throw new Error('Method not implemented.');
