@@ -23,11 +23,12 @@ System.register([], function (exports_1, context_1) {
                     }
                     return this.dejimons;
                 }
-                addToStorage() {
-                    throw new Error('Method not implemented.');
+                updateStorage(collection) {
+                    this.dejimons = collection;
+                    localStorage.Dejimon_Collection_Array = JSON.stringify(this.dejimons);
                 }
                 removeFromStorage() {
-                    throw new Error('Method not implemented.');
+                    localStorage.removeItem("Dejimon_Collection_Array");
                 }
                 isStorageEmpty() {
                     if (!this.browserSupport)

@@ -53,6 +53,58 @@
         <button type="button" id="add" class="btn btn-primary btn-lg">Add A Dejimon</button>
     </main>
 
+
+    <section class="text-center" id="dejiAdd" hidden>
+        <form>
+            <section class="form-group">
+                <label for="name">Name</label>
+                <input type="text" placeholder="Enter Name" id="name" class="form-control">
+            </section>
+            
+            <section class="form-group">
+                <label for="select-type">Select a Type</label>
+                <select id="select-type" class="form-control">
+                    <option value="0" selected disabled hidden>Select Dejimon Type</option>
+                    <option value="1">Yorkshire</option>
+                    <option value="2">Lean</option>
+                    <option value="3">Potbelly</option>
+                </select>
+            </section>
+    
+            <section class="form-group">
+                <label for="ability-type">Ability</label>
+                <select id="ability-type" class="form-control">
+                    <option value="0" selected disabled hidden>Select Dejimon Ability</option>
+                    <option value="1">Water</option>
+                    <option value="2">Ice</option>
+                    <option value="3">Fire</option>
+                    <option value="4">Charm</option>
+                    <option value="5">Electric</option>
+                </select>
+            </section>
+    
+            <section class="form-group">
+                <label for="ability">Ability Power [0 to 100]</label>
+                <input type="range" id="ability" class="form-control-range" min="0" max="100" step="1" value="50"
+                oninput="this.nextElementSibling.value = this.value">
+                <output>50</output>
+            </section>
+    
+            <section class="form-group">
+                <label for="height">Height</label>
+                <input type="number" class="form-control" id="height" placeholder="Enter Dejimon Height">
+            </section>
+    
+            <section class="form-group">
+                <label for="weight">Weight</label>
+                <input type="number" class="form-control" id="weight" placeholder="Enter Dejimon Weight">
+            </section>
+    
+            <button type="button" id="submit-details" class="btn btn-primary btn-lg">Submit Details</button>
+        </form>
+    </section>
+
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/systemjs/0.19.47/system.js" integrity="sha512-mkBpeD76fJnxFHGZstCL0mPCW6E3RFtUzfp5Ye8oQg2rxQNHy4BgHsbmvSizsq3fgF4PGozPI1BzGCB/h1Yq5g==" crossorigin="anonymous"></script>
     <script>
         System.defaultJSExtensions = true;

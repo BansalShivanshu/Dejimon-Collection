@@ -24,6 +24,7 @@ export class DejimonServices implements Dejimon.Service.Services {
         if (!(localStrg.isStorageEmpty())) {
             // parse the storage to the array using add function
             this.dejimons = localStrg.getStorage();
+            DejimonServices.currentID = this.dejimons.length;
             console.log("collection: ", this.dejimons);  // DELETE THIS
         } // else do nothing
     }
@@ -31,7 +32,9 @@ export class DejimonServices implements Dejimon.Service.Services {
     add(dejimon: Dejimon): void {
         dejimon.id = DejimonServices.currentID++;
         this.dejimons.push(dejimon);
-        console.log("added new dejimon: " + dejimon);
+        localStrg.updateStorage(this.dejimons);
+
+        console.log("added new dejimon: " , dejimon);
     }
 
     moreInfo(dejimon: Dejimon): Model.Dejimon {

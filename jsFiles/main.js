@@ -1,12 +1,9 @@
-System.register(["./DejimonServices", "./MainFunctions"], function (exports_1, context_1) {
+System.register(["./MainFunctions"], function (exports_1, context_1) {
     "use strict";
-    var _a, DejimonServices_1, MainFunctions_1, collection, mainFunctions;
+    var _a, MainFunctions_1, mainFunctions;
     var __moduleName = context_1 && context_1.id;
     return {
         setters: [
-            function (DejimonServices_1_1) {
-                DejimonServices_1 = DejimonServices_1_1;
-            },
             function (MainFunctions_1_1) {
                 MainFunctions_1 = MainFunctions_1_1;
             }
@@ -15,7 +12,6 @@ System.register(["./DejimonServices", "./MainFunctions"], function (exports_1, c
             /**
              * Initializers
              */
-            collection = new DejimonServices_1.DejimonServices();
             mainFunctions = new MainFunctions_1.MainFunctions();
             /**
              * Event Listners

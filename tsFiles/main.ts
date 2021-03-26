@@ -1,13 +1,11 @@
 /**
  * Import Statemenets
  */
-import { DejimonServices } from './DejimonServices';
 import { MainFunctions } from './MainFunctions';
 
 /**
  * Initializers
  */
-var collection = new DejimonServices();
 var mainFunctions = new MainFunctions();
 
 
@@ -34,27 +32,6 @@ document.getElementById("add")?.addEventListener('click', mainFunctions.AddDejim
 
 // console.log("saving to localStorage");
 // localStorage.Dejimon_Collection_Array = JSON.stringify(collection.showAll());
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

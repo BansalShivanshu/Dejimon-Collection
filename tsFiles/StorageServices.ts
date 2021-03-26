@@ -4,9 +4,8 @@ import Dejimon = Model.Dejimon;
 namespace Dejimon.StorageService {
     export interface StorageServices {
         getStorage(): Dejimon[];
-        addToStorage(): boolean;
-        removeFromStorage(): boolean;
-
+        updateStorage(collection: Dejimon[]): void;
+        removeFromStorage(): void;
         isStorageEmpty(): boolean;
     }
 }
@@ -34,11 +33,14 @@ export class StorageServices implements Dejimon.StorageService.StorageServices {
 
         return this.dejimons;
     }
-    addToStorage(): boolean {
-        throw new Error('Method not implemented.');
+
+    updateStorage(collection: Dejimon[]): void {
+        this.dejimons = collection;
+        localStorage.Dejimon_Collection_Array = JSON.stringify(this.dejimons);
     }
-    removeFromStorage(): boolean {
-        throw new Error('Method not implemented.');
+
+    removeFromStorage(): void {
+        localStorage.removeItem("Dejimon_Collection_Array");
     }
 
     isStorageEmpty(): boolean {
