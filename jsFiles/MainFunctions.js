@@ -1,6 +1,6 @@
 System.register(["./DejimonServices"], function (exports_1, context_1) {
     "use strict";
-    var DejimonServices_1, fname, selectType, abilityType, ability, height, weight, submit, formDOM, mainHeading, MainFunctions;
+    var DejimonServices_1, fname, selectType, abilityType, ability, height, weight, submit, formDOM, mainHeading, infoDOM, collection, MainFunctions;
     var __moduleName = context_1 && context_1.id;
     function setAbilitiesTrue() {
         abilityType.options[1].hidden = false;
@@ -18,7 +18,7 @@ System.register(["./DejimonServices"], function (exports_1, context_1) {
         var cell4 = row.insertCell(3);
         cell1.innerHTML = name;
         cell2.innerHTML = type;
-        cell3.innerHTML = "<a href='#'>More info</a>";
+        cell3.innerHTML = "<a href='#more-info'>More info</a>";
         cell4.innerHTML = "<a class='del'>Delete</a>";
         // event listner for more information
         cell3.addEventListener('click', () => {
@@ -26,21 +26,31 @@ System.register(["./DejimonServices"], function (exports_1, context_1) {
         });
         // event listner for deletion
         cell4.addEventListener('click', () => {
-            removeRow(row);
+            removeRow(row, dejiID);
         });
     }
     function moreInfo(dejiID) {
-        var collection = new DejimonServices_1.DejimonServices();
+        infoDOM.hidden = false;
+        // window.scrollTo(0,document.body.scrollHeight);
+        infoDOM.scrollIntoView({ behavior: "smooth" });
         var dejimon = collection.moreInfo(dejiID);
+        if (dejimon.id == -1) {
+            alert("something went wrong!\nWe are sorry for any inconvenience");
+            return;
+        }
         document.getElementById("mf-name").textContent = dejimon.name;
-        document.getElementById("mf-type").textContent = dejimon.ability_type;
+        document.getElementById("mf-type").textContent = dejimon.type;
         document.getElementById("mf-ability-type").textContent = dejimon.ability_type + " Ability:";
         document.getElementById("mf-ability-strength").textContent = dejimon.ability.toString();
+        document.getElementById("mf-height").textContent = dejimon.height.toString();
+        document.getElementById("mf-weight").textContent = dejimon.weight.toString();
+        document.getElementById("mf-overall-strength").textContent = (dejimon.overall_strength.toFixed(2)).toString();
     }
-    function removeRow(row) {
+    function removeRow(row, dejiID) {
         var res = confirm("Are you sure about deleting Dejimon " + row.cells[0].innerText + "?");
         if (res) {
             // remove from array
+            collection.remove(dejiID);
             // remove from document
             var table = document.getElementById("collection-table");
             console.log("Deleting row " + row.rowIndex);
@@ -64,6 +74,8 @@ System.register(["./DejimonServices"], function (exports_1, context_1) {
             submit = document.getElementById("submit-details");
             formDOM = document.getElementById("dejiAdd");
             mainHeading = document.getElementById("main-heading");
+            infoDOM = document.getElementById("more-info");
+            collection = new DejimonServices_1.DejimonServices();
             MainFunctions = class MainFunctions {
                 addDejimon() {
                     // make the form visible
@@ -143,19 +155,25 @@ System.register(["./DejimonServices"], function (exports_1, context_1) {
                         weight: +weight.value,
                         overall_strength: ((+ability.value) + (+height.value) + (+weight.value)) / 3
                     };
-                    var collection = new DejimonServices_1.DejimonServices();
                     collection.add(deji);
                     alert("Dejimon Added!");
                     formDOM.hidden = true;
                     document.getElementById("dejiAddForm").reset();
                     setAbilitiesTrue();
                     mainHeading.scrollIntoView({ behavior: "smooth" });
-                    // updateView(deji.name, deji.type, DejimonServices.currentID);
+                    updateView(deji.name, deji.type, DejimonServices_1.DejimonServices.currentID);
                 }
                 cancelForm() {
                     formDOM.hidden = true;
                     setAbilitiesTrue();
                     mainHeading.scrollIntoView({ behavior: "smooth" });
+                }
+                mfDoneLsn() {
+                    infoDOM.hidden = true;
+                    mainHeading.scrollIntoView({ behavior: "smooth" });
+                }
+                onLoad() {
+                    window.alert('loaded');
                 }
             };
             exports_1("MainFunctions", MainFunctions);

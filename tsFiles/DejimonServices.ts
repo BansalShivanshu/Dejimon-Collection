@@ -9,7 +9,7 @@ namespace Dejimon.Service {
     export interface Services {
         add(dejimon: Dejimon): void;
         moreInfo(dejiID: number): Dejimon;
-        remove(dejimon: Dejimon): boolean;
+        remove(dejiID: number): void;
         showAll(): Dejimon[];
     }
 }
@@ -24,7 +24,15 @@ export class DejimonServices implements Dejimon.Service.Services {
         if (!(localStrg.isStorageEmpty())) {
             // parse the storage to the array using add function
             this.dejimons = localStrg.getStorage();
-            DejimonServices.currentID = this.dejimons.length;
+            var cdj: Dejimon = this.dejimons.slice(-1)[0];
+            var cid: number;
+            if (cdj.id) {
+                cid = cdj.id;
+                cid++;
+            } else {
+                cid = this.dejimons.length;
+            }
+            DejimonServices.currentID = cid;
             console.log("collection: ", this.dejimons);  // DELETE THIS
         } // else do nothing
     }
@@ -50,17 +58,27 @@ export class DejimonServices implements Dejimon.Service.Services {
         };
 
         for (let i: number = 0; i < this.dejimons.length; i++) {
-            if (this.dejimons[i].id === dejiID) {
-                dej = this.dejimons[i];
-                break;
+            // console.log("Searching id ", i, ": ", this.dejimons[i]); FOR DEBUGING ONLY
+            if (this.dejimons[i].id == (dejiID - 1)) {
+                // console.log("returning dejimon ", this.dejimons[i]); FOR DEBUGING ONLY
+                return this.dejimons[i];
             }
         }
-        
+
         return dej;
     }
 
-    remove(dejimon: Dejimon): boolean {
-        throw new Error('Method not implemented.');
+    remove(dejiID: number): void {
+        var index: number = dejiID - 1;
+        for (let i: number = 0; i < this.dejimons.length; i++) {
+            if (this.dejimons[i].id == index) {
+                this.dejimons.splice(index, 1);
+                localStrg.updateStorage(this.dejimons);
+                console.log("Just Deleted element at index ", index);
+                console.log("new collection is ", this.dejimons);
+                return;
+            }
+        }
     }
 
     showAll(): Dejimon[] {

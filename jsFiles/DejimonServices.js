@@ -16,7 +16,16 @@ System.register(["./StorageServices"], function (exports_1, context_1) {
                     if (!(localStrg.isStorageEmpty())) {
                         // parse the storage to the array using add function
                         this.dejimons = localStrg.getStorage();
-                        DejimonServices.currentID = this.dejimons.length;
+                        var cdj = this.dejimons.slice(-1)[0];
+                        var cid;
+                        if (cdj.id) {
+                            cid = cdj.id;
+                            cid++;
+                        }
+                        else {
+                            cid = this.dejimons.length;
+                        }
+                        DejimonServices.currentID = cid;
                         console.log("collection: ", this.dejimons); // DELETE THIS
                     } // else do nothing
                 }
@@ -38,15 +47,25 @@ System.register(["./StorageServices"], function (exports_1, context_1) {
                         overall_strength: -1
                     };
                     for (let i = 0; i < this.dejimons.length; i++) {
-                        if (this.dejimons[i].id === dejiID) {
-                            dej = this.dejimons[i];
-                            break;
+                        // console.log("Searching id ", i, ": ", this.dejimons[i]); FOR DEBUGING ONLY
+                        if (this.dejimons[i].id == (dejiID - 1)) {
+                            // console.log("returning dejimon ", this.dejimons[i]); FOR DEBUGING ONLY
+                            return this.dejimons[i];
                         }
                     }
                     return dej;
                 }
-                remove(dejimon) {
-                    throw new Error('Method not implemented.');
+                remove(dejiID) {
+                    var index = dejiID - 1;
+                    for (let i = 0; i < this.dejimons.length; i++) {
+                        if (this.dejimons[i].id == index) {
+                            this.dejimons.splice(index, 1);
+                            localStrg.updateStorage(this.dejimons);
+                            console.log("Just Deleted element at index ", index);
+                            console.log("new collection is ", this.dejimons);
+                            return;
+                        }
+                    }
                 }
                 showAll() {
                     return this.dejimons;

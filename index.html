@@ -14,8 +14,11 @@
 
     <!-- Local Stylesheet -->
     <link rel="stylesheet" href="styles.css">
+
+    <!-- script for loading index.html -->
+    <!-- <script src="./jsFiles/Load.js"></script> -->
 </head>
-<body>
+<body id="body" >
     <header id="main-heading">
         <section class="jumbotron">
             <h1 class="h1">Dejimon Collection</h1><br>
@@ -100,38 +103,37 @@
     </section>
 
     <!-- Display more information -->
-    <section id="more-info" class="text-center">
-        <h3 class="h3">More Info</h3>
+    <section id="more-info" class="text-center" hidden>
+        <h3 class="h3" id="mf-h3">More Info</h3>
         <table class="table table-striped table-hover table-dark" id="collection-table">
             <tr>
-                <td>Name:</td>
-                <td id="mf-name"></td>
+                <td class="mf-fTD">Name:</td>
+                <td id="mf-name" class="mf-secTD"></td>
             </tr>
             <tr>
-                <td>Type:</td>
-                <td id="mf-type"></td>
+                <td class="mf-fTD">Type:</td>
+                <td id="mf-type" class="mf-secTD"></td>
             </tr>
             <tr>
-                <td id="mf-ability-type"></td>
-                <td id="mf-ability-strength"></td>
+                <td id="mf-ability-type" class="mf-fTD"></td>
+                <td id="mf-ability-strength" class="mf-secTD"></td>
             </tr>
             <tr>
-                <td>Height:</td>
-                <td id="mf-height"></td>
+                <td class="mf-fTD">Height:</td>
+                <td id="mf-height" class="mf-secTD"></td>
             </tr>
             <tr>
-                <td>Weight:</td>
-                <td id="mf-weight"></td>
+                <td class="mf-fTD">Weight:</td>
+                <td id="mf-weight" class="mf-secTD"></td>
             </tr>
             <tr>
-                <td>Overall Strength:</td>
-                <td id="mf-overall-strength"></td>
+                <td class="mf-fTD">Overall Strength:</td>
+                <td id="mf-overall-strength" class="mf-secTD"></td>
             </tr>
         </table>
 
         <button type="button" id="mf-done" class="btn btn-primary btn-lg">Done</button>
     </section>
-
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/systemjs/0.19.47/system.js" integrity="sha512-mkBpeD76fJnxFHGZstCL0mPCW6E3RFtUzfp5Ye8oQg2rxQNHy4BgHsbmvSizsq3fgF4PGozPI1BzGCB/h1Yq5g==" crossorigin="anonymous"></script>
     <script>
