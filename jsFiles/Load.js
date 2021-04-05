@@ -1,9 +1,15 @@
 "use strict";
-var infoDOM = document.getElementById("more-info");
+/**
+ * Cannot import services as init stops working there on after.
+ */
 function init() {
+    var _a;
+    if (((_a = localStorage.getItem("Dejimon_Collection_Array")) === null || _a === void 0 ? void 0 : _a.length) == 0)
+        return;
     var dejis = JSON.parse(localStorage.Dejimon_Collection_Array);
     console.log(dejis);
     var table = document.getElementById("collection-table");
+    var infoDOM = document.getElementById("more-info");
     for (let i = 0; i < dejis.length; i++) {
         console.log("object at ", i, ": ", dejis[i]);
         var row = table.insertRow();
@@ -19,24 +25,29 @@ function init() {
         cell3.addEventListener('click', () => {
             infoDOM.hidden = false;
             infoDOM.scrollIntoView({ behavior: "smooth" });
+            document.getElementById("mf-name").textContent = dejis[i].name;
+            document.getElementById("mf-type").textContent = dejis[i].type;
+            document.getElementById("mf-ability-type").textContent = dejis[i].ability_type + " Ability:";
+            document.getElementById("mf-ability-strength").textContent = dejis[i].ability.toString();
+            document.getElementById("mf-height").textContent = dejis[i].height.toString();
+            document.getElementById("mf-weight").textContent = dejis[i].weight.toString();
+            document.getElementById("mf-overall-strength").textContent = (dejis[i].overall_strength.toFixed(2)).toString();
         });
-        // event listner for deletion
         cell4.addEventListener('click', () => {
-            removeRow(row, i, dejis);
+            var res = confirm("Are you sure about deleting Dejimon " + row.cells[0].innerText + "?");
+            if (res) {
+                // remove from array
+                dejis.splice(i, 1);
+                localStorage.Dejimon_Collection_Array = JSON.stringify(dejis);
+                console.log("Just Deleted element at index ", i);
+                console.log("new collection is ", dejis);
+                // remove from document
+                var table = document.getElementById("collection-table");
+                console.log("Deleting row " + row.rowIndex);
+                table.deleteRow(row.rowIndex);
+                // reload page to reflect changes in dejimon services array
+                window.location.reload();
+            }
         });
     }
-}
-function moreInfo(deji) {
-    var dejimon = collection.moreInfo(dejiID);
-    if (dejimon.id == -1) {
-        alert("something went wrong!\nWe are sorry for any inconvenience");
-        return;
-    }
-    document.getElementById("mf-name").textContent = dejimon.name;
-    document.getElementById("mf-type").textContent = dejimon.type;
-    document.getElementById("mf-ability-type").textContent = dejimon.ability_type + " Ability:";
-    document.getElementById("mf-ability-strength").textContent = dejimon.ability.toString();
-    document.getElementById("mf-height").textContent = dejimon.height.toString();
-    document.getElementById("mf-weight").textContent = dejimon.weight.toString();
-    document.getElementById("mf-overall-strength").textContent = (dejimon.overall_strength.toFixed(2)).toString();
 }

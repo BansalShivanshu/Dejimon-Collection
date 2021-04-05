@@ -1,6 +1,6 @@
 System.register(["./DejimonServices"], function (exports_1, context_1) {
     "use strict";
-    var DejimonServices_1, fname, selectType, abilityType, ability, height, weight, submit, formDOM, mainHeading, infoDOM, collection, MainFunctions;
+    var DejimonServices_1, fname, selectType, abilityType, ability, height, weight, submit, formDOM, mainHeading, infoDOM, refreshBTN, collection, MainFunctions;
     var __moduleName = context_1 && context_1.id;
     function setAbilitiesTrue() {
         abilityType.options[1].hidden = false;
@@ -51,6 +51,7 @@ System.register(["./DejimonServices"], function (exports_1, context_1) {
         if (res) {
             // remove from array
             collection.remove(dejiID);
+            console.log("dejiID: " + dejiID);
             // remove from document
             var table = document.getElementById("collection-table");
             console.log("Deleting row " + row.rowIndex);
@@ -75,12 +76,14 @@ System.register(["./DejimonServices"], function (exports_1, context_1) {
             formDOM = document.getElementById("dejiAdd");
             mainHeading = document.getElementById("main-heading");
             infoDOM = document.getElementById("more-info");
+            refreshBTN = document.getElementById("refresh");
             collection = new DejimonServices_1.DejimonServices();
             MainFunctions = class MainFunctions {
                 addDejimon() {
                     // make the form visible
                     formDOM.hidden = false;
                     formDOM.scrollIntoView({ behavior: "smooth" });
+                    // fname.focus();
                 }
                 selectTypeLsn() {
                     // set ability type to default
@@ -172,8 +175,13 @@ System.register(["./DejimonServices"], function (exports_1, context_1) {
                     infoDOM.hidden = true;
                     mainHeading.scrollIntoView({ behavior: "smooth" });
                 }
-                onLoad() {
-                    window.alert('loaded');
+                btnRefresh() {
+                    var tempDejis = collection.showAll();
+                    for (let i = 0; i < tempDejis.length; i++) {
+                        updateView(tempDejis[i].name, tempDejis[i].type, tempDejis[i].id + 1);
+                    }
+                    refreshBTN.hidden = true;
+                    document.getElementById("add").hidden = false;
                 }
             };
             exports_1("MainFunctions", MainFunctions);

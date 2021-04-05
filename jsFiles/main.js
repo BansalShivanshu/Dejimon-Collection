@@ -18,6 +18,7 @@ System.register(["./MainFunctions"], function (exports_1, context_1) {
              * Event Listners
              */
             // (<HTMLTableElement>document.getElementById('collection-table')).addEventListener('focusin', mainFunctions.onLoad);
+            document.getElementById("refresh").addEventListener('click', mainFunctions.btnRefresh);
             document.getElementById("add").addEventListener('click', mainFunctions.addDejimon);
             document.getElementById("cancel-btn").addEventListener('click', mainFunctions.cancelForm);
             document.getElementById("select-type").addEventListener('change', mainFunctions.selectTypeLsn);

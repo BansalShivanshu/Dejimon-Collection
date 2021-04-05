@@ -18,7 +18,7 @@
     <!-- script for loading index.html -->
     <!-- <script src="./jsFiles/Load.js"></script> -->
 </head>
-<body id="body" >
+<body id="body" onload="alert('Hit Refresh Button Now to get Updated Results!\nIf nothing happens, no more results present in database.')">
     <header id="main-heading">
         <section class="jumbotron">
             <h1 class="h1">Dejimon Collection</h1><br>
@@ -38,16 +38,11 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>Porkichu</td>
-                    <td>Potbelly</td>
-                    <td>More Info</td>
-                    <td id='del'>Delete</td>
-                </tr>
             </tbody>
         </table>
 
-        <button type="button" id="add" class="btn btn-primary btn-lg">Add A Dejimon</button>
+        <button type="button" id="add" class="btn btn-primary btn-lg" hidden>Add A Dejimon</button>
+        <button type="button" id="refresh" class="btn btn-danger btn-lg">Refresh Now!</button>
     </main>
 
     <!-- Add a new Dejimon -->

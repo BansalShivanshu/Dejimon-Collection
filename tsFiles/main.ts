@@ -14,8 +14,7 @@ var mainFunctions = new MainFunctions();
  * Event Listners
  */
 // (<HTMLTableElement>document.getElementById('collection-table')).addEventListener('focusin', mainFunctions.onLoad);
-
-
+(<HTMLButtonElement>document.getElementById("refresh")).addEventListener('click', mainFunctions.btnRefresh);
 (<HTMLButtonElement>document.getElementById("add")).addEventListener('click', mainFunctions.addDejimon);
 (<HTMLButtonElement>document.getElementById("cancel-btn")).addEventListener('click', mainFunctions.cancelForm);
 (<HTMLSelectElement>document.getElementById("select-type")).addEventListener('change', mainFunctions.selectTypeLsn);

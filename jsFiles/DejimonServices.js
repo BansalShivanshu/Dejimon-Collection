@@ -59,8 +59,14 @@ System.register(["./StorageServices"], function (exports_1, context_1) {
                     var index = dejiID - 1;
                     for (let i = 0; i < this.dejimons.length; i++) {
                         if (this.dejimons[i].id == index) {
-                            this.dejimons.splice(index, 1);
-                            localStrg.updateStorage(this.dejimons);
+                            this.dejimons.splice(i, 1);
+                            console.log("array length : ", this.dejimons.length);
+                            if (this.dejimons.length == 0) {
+                                localStrg.removeFromStorage();
+                            }
+                            else {
+                                localStrg.updateStorage(this.dejimons);
+                            }
                             console.log("Just Deleted element at index ", index);
                             console.log("new collection is ", this.dejimons);
                             return;
@@ -69,6 +75,9 @@ System.register(["./StorageServices"], function (exports_1, context_1) {
                 }
                 showAll() {
                     return this.dejimons;
+                }
+                currentLength() {
+                    return this.dejimons.length;
                 }
             };
             exports_1("DejimonServices", DejimonServices);

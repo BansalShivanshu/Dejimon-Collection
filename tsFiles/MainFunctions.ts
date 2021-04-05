@@ -13,6 +13,7 @@ var submit = <HTMLButtonElement> document.getElementById("submit-details");
 var formDOM = <HTMLElement> document.getElementById("dejiAdd");
 var mainHeading = <HTMLElement> document.getElementById("main-heading");
 var infoDOM = <HTMLElement> document.getElementById("more-info");
+var refreshBTN = (<HTMLButtonElement>document.getElementById("refresh"));
 var collection = new DejimonServices();
 
 export class MainFunctions {
@@ -20,6 +21,7 @@ export class MainFunctions {
         // make the form visible
         formDOM.hidden = false;
         formDOM.scrollIntoView({behavior: "smooth"});
+        // fname.focus();
     }        
 
     selectTypeLsn() {
@@ -127,8 +129,14 @@ export class MainFunctions {
         mainHeading.scrollIntoView({behavior: "smooth"});
     }
 
-    onLoad() : void {
-        window.alert('loaded');
+    btnRefresh() : void {
+        var tempDejis: Dejimon[] = collection.showAll();
+        for (let i : number = 0; i < tempDejis.length; i++) {
+            updateView(tempDejis[i].name, tempDejis[i].type, tempDejis[i].id! + 1);
+        }
+
+        refreshBTN.hidden = true;
+        (<HTMLButtonElement>document.getElementById("add")).hidden = false;
     }
 }
 
@@ -194,6 +202,8 @@ function removeRow(row: HTMLTableRowElement, dejiID: number) : void {
     if (res) {
         // remove from array
         collection.remove(dejiID);
+
+        console.log("dejiID: " + dejiID);
 
         // remove from document
         var table = <HTMLTableElement> document.getElementById("collection-table");

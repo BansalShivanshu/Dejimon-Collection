@@ -11,6 +11,7 @@ namespace Dejimon.Service {
         moreInfo(dejiID: number): Dejimon;
         remove(dejiID: number): void;
         showAll(): Dejimon[];
+        currentLength() : number;
     }
 }
 
@@ -72,8 +73,15 @@ export class DejimonServices implements Dejimon.Service.Services {
         var index: number = dejiID - 1;
         for (let i: number = 0; i < this.dejimons.length; i++) {
             if (this.dejimons[i].id == index) {
-                this.dejimons.splice(index, 1);
-                localStrg.updateStorage(this.dejimons);
+                this.dejimons.splice(i, 1);
+                
+                console.log("array length : ", this.dejimons.length);
+                if (this.dejimons.length == 0) {
+                    localStrg.removeFromStorage();
+                } else {
+                    localStrg.updateStorage(this.dejimons);
+                }
+
                 console.log("Just Deleted element at index ", index);
                 console.log("new collection is ", this.dejimons);
                 return;
@@ -83,5 +91,9 @@ export class DejimonServices implements Dejimon.Service.Services {
 
     showAll(): Dejimon[] {
         return this.dejimons;
+    }
+
+    currentLength() : number {
+        return this.dejimons.length;
     }
 }
